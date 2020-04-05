@@ -1,0 +1,76 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .product.data.items{
+        .item.content {
+            .product.attribute {
+                .type {
+                    display: inline-block;
+                    font-size: @product-tab-detailed-content-title__font-size;
+                    margin-bottom: 13px;
+                }
+
+                .value {
+                    font-family: @font-family__Myriad-Pro;
+                    font-size: @font-size__base;
+                    line-height: 22px;
+                    padding-top: 5px;
+                }
+            }
+        }
+
+        .product.items.heading{
+            border-bottom: 2px solid @product-detailed-heading__border-top-color;
+
+            .item.title{
+                display: inline-block;
+                color: @product-detailed-title__text-color;
+                .lib-font-size(15);
+                font-weight: @font-weight__bold;
+                margin-right: 68px;
+
+                a{
+                    padding: 21px 0;
+                    display: inline-block;
+                }
+            }
+        }
+
+        .product.items.content{
+            margin-top: 33px;
+
+            .tab-caption{
+                &:extend(.product.data.items .item.content .product.attribute .type);
+                letter-spacing: 0.8px;
+                font-weight: @font-weight__bold;
+            }
+        }
+
+        .product.features.list{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            li{
+                //padding: 20px 0;
+                line-height: 44px;
+            }
+
+            .features.title{
+                width: 645px;
+                //display: inline-block;
+            }
+
+            li:nth-child(odd){
+                background-color: @product-table-features-row-odd__bg-color;
+            }
+
+            span{
+                display: inline-block;
+                padding-left: 22px;
+            }
+        }
+    }
+}

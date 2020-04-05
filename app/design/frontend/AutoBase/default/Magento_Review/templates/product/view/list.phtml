@@ -1,0 +1,110 @@
+<?php
+/**
+ *
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var Magento\Review\Block\Product\View\ListView $block */
+
+$_items = $block->getReviewsCollection()->getItems();
+$format = $block->getDateFormat() ?: \IntlDateFormatter::SHORT;
+$shown_items = 3;
+$_counter = 0;
+?>
+<?php if (count($_items)) : ?>
+<div class="block review-list" id="customer-reviews">
+    <div class="block-title">
+        <strong><?= $block->escapeHtml(__('Customer Reviews')); ?>&nbsp;(<?= $block->escapeHtml(count($_items)); ?>)</strong>
+    </div>
+    <div class="block-content">
+        <div class="toolbar review-toolbar">
+            <?= $block->getChildHtml('toolbar'); ?>
+        </div>
+        <ol class="items review-items">
+        <?php foreach ($_items as $_review) : ?>
+            <li class="item review-item" itemscope itemprop="review" itemtype="http://schema.org/Review"
+            <?php if( $_counter >= $shown_items) : ?> style="display: none" <?php endif; ?>>
+                <div class="review left-col">
+                    <div class="review-details">
+                        <p class="review-author">
+                            <span class="review-details-label"><?= $block->escapeHtml(__('Review by')); ?></span>
+                            <strong class="review-details-value" itemprop="author"><?= $block->escapeHtml($_review->getNickname()); ?></strong>
+                        </p>
+                        <p class="review-date">
+                            <span class="review-details-label"><?= $block->escapeHtml(__('Posted on')); ?></span>
+                            <time class="review-details-value" itemprop="datePublished" datetime="<?= $block->escapeHtmlAttr($block->formatDate($_review->getCreatedAt(), $format)); ?>"><?= $block->escapeHtml($block->formatDate($_review->getCreatedAt(), $format)); ?></time>
+                        </p>
+                    </div>
+                    <div class="review-title" itemprop="name"><?= $block->escapeHtml($_review->getTitle()); ?></div>
+                    <div class="review-content" itemprop="description">
+                        <p><?= /* @noEscape */ nl2br($block->escapeHtml($_review->getDetail())); ?></p>
+                        <div class="product quality">
+                            <div class="product advantages">
+                                <span class="advantages label"><?=__('Advantages'); ?>:</span>
+                                <span class="advantages value">хорошая батарея, и вообще неплохой смартфон</span>
+                            </div>
+                            <div class="product disadvantages">
+                                <span class="disadvantages label"><?=__('Disadvantages'); ?>:</span>
+                                <span class="disadvantages value">не обнаружены</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-additional">
+                        <a href="#" class="respons">
+                            <span class="count">1</span>
+                            <span><?=__('response'); ?></span>
+                        </a>
+                        <a href="#" class="action respond">
+                            <?=__('Respond'); ?>
+                        </a>
+                        <div class="review-voting">
+                            <span class="label">
+                                <?=__('Was this review helpful to you'); ?>:
+                            </span>
+                            <a href="#" class="action like">
+                                <span>14</span>
+                            </a>
+                            <a href="#" class="action dislike">
+                                <span>3</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="review right-col">
+                    <?php if (count($_review->getRatingVotes())) : ?>
+                        <div class="review-ratings">
+                            <?php foreach ($_review->getRatingVotes() as $_vote) : ?>
+                                <div class="rating-summary item" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                                    <span class="label rating-label"><span><?= __('Rating'); ?></span></span>
+                                    <div class="rating-result" title="<?= $block->escapeHtmlAttr($_vote->getPercent()); ?>%">
+                                        <meta itemprop="worstRating" content = "1"/>
+                                        <meta itemprop="bestRating" content = "100"/>
+                                        <span style="width:<?= $block->escapeHtmlAttr($_vote->getPercent()); ?>%">
+                                <span itemprop="ratingValue"><?= $block->escapeHtml(number_format(($_vote->getPercent() / 20), 1, '.','')); ?></span>
+                            </span>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </li>
+            <?php $_counter++; ?>
+        <?php endforeach; ?>
+        </ol>
+        <?php if ( count($_items) > $shown_items ) : ?>
+            <div class="show_hide" data-mage-init='{"showHideList":
+            {
+                "itemsShown":"<?= $shown_items; ?>",
+                "childElement":"li",
+                "toggleText":"Show all reviews",
+                "activeToggleText":"Collapse"
+            }}'></div>
+        <?php endif; ?>
+        <div class="toolbar review-toolbar">
+            <?= $block->getChildHtml('toolbar'); ?>
+        </div>
+    </div>
+</div>
+<?php endif;?>

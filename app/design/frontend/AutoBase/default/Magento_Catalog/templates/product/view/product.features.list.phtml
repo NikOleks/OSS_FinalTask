@@ -1,0 +1,91 @@
+<?php
+/**
+ * AutoBase default Catalog product view product features template
+ *
+ * @author Nikolaichuk Oleksandr nikolaychuk.alexander@gmail.com
+ * @copyright 2020 Nikolaichuk
+ */
+?>
+<?php
+$helper = $this->helper('Magento\Catalog\Helper\Output');
+$product = $block->getProduct();
+$code = $block->getAtCode();
+$className = $block->getCssClass();
+$attributeLabel = $block->getAtLabel();
+$attributeType = $block->getAtType();
+$attributeAddAttribute = $block->getAddAttribute();
+
+$viscosity = $block->hasData('viscosity') ? $block->getData('viscosity') : '';
+$cct40 = $block->hasData('cCt-40') ? $block->getData('cCt-40') : '';
+$cct100 = $block->hasData('cCt-100') ? $block->getData('cCt-100') : '';
+$ash = $block->hasData('sulphated_ash') ? $block->getData('sulphated_ash') : '';
+$phosphorus = $block->hasData('phosphorus') ? $block->getData('phosphorus') : '';
+$flashPoint = $block->hasData('flash_point') ? $block->getData('flash_point') : '';
+$pourPoint = $block->hasData('pour_point') ? $block->getData('pour_point') : '';
+if ($attributeLabel && $attributeLabel == 'default') {
+    $attributeLabel = $product->getResource()->getAttribute($code)->getFrontendLabel();
+}
+$attributeValue = $product->getResource()->getAttribute($code)->getFrontend()->getValue($product);
+$shown_items = 7;
+?>
+
+<?php if ($attributeValue): ?>
+    <div class="packaging-content" <?php echo $attributeAddAttribute; ?>>
+        <?php echo $attributeValue; ?>
+    </div>
+<?php endif; ?>
+<ul class="product features list">
+    <li>
+        <span class="features title"><?= __('Viscosity grade'); ?>:</span>
+        <span class="features value"><?= $viscosity; ?></span>
+    </li>
+    <li>
+        <span class="features title"><?= __('cSt at 40ºC'); ?>:</span>
+        <span class="features value"><?= $cct40; ?></span>
+    </li>
+    <li>
+        <span class="features title"><?= __('cSt at 100ºC'); ?>:</span>
+        <span class="features value"><?= $cct100; ?></span>
+    </li>
+    <li>
+        <span class="features title"><?= __('Sulphated ash,% oil., ASTM D 874'); ?>:</span>
+        <span class="features value"><?= $ash; ?></span>
+    </li>
+    <li>
+        <span class="features title"><?= __('Phosphorus'); ?>:</span>
+        <span class="features value"><?= $phosphorus; ?></span>
+    </li>
+    <li>
+        <span class="features title"><?= __('Flash point, ºC, ASTM D 92'); ?>:</span>
+        <span class="features value"><?= $flashPoint; ?></span>
+    </li>
+    <li>
+        <span class="features title"><?= __('Pour point , ºC, ASTM D 97'); ?>:</span>
+        <span class="features value"><?= $pourPoint; ?></span>
+    </li>
+    <li style="display: none">
+        <span class="features title">ASTM D 874:</span>
+        <span class="features value">0,0195</span>
+    </li>
+    <li style="display: none">
+        <span class="features title">Содержание фосфора:</span>
+        <span class="features value">333</span>
+    </li>
+    <li style="display: none">
+        <span class="features title">Температура вспышки, ºC, SAPT Y 95:</span>
+        <span class="features value">123</span>
+    </li>
+    <li style="display: none">
+        <span class="features title">Температура застывания, ºC, KASM P 60:</span>
+        <span class="features value">-49</span>
+    </li>
+</ul>
+<div class="show_hide" data-mage-init='{"showHideList":
+    {
+        "itemsShown":"<?= $shown_items; ?>",
+        "childElement":"li",
+        "toggleText":"Show all specifications",
+        "activeToggleText":"Collapse"
+     }}'>
+</div>
+

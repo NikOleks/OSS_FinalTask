@@ -1,0 +1,75 @@
+<?php
+/**
+ *
+ *
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+
+/**
+ * Product additional attributes template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Attributes
+ */
+?>
+<?php
+$shown_items = 7;
+?>
+    <div class="tab-caption"><?= $block->escapeHtml(__('More Information')) ?></div>
+    <ul class="product features list">
+        <li>
+            <span class="features title"><?= __('Viscosity grade'); ?>:</span>
+            <span class="features value">5W-40</span>
+        </li>
+        <li>
+            <span class="features title"><?= __('cSt at 40ºC'); ?>:</span>
+            <span class="features value">84</span>
+        </li>
+        <li>
+            <span class="features title"><?= __('cSt at 100ºC'); ?>:</span>
+            <span class="features value">14</span>
+        </li>
+        <li>
+            <span class="features title"><?= __('Sulphated ash,% oil., ASTM D 874'); ?>:</span>
+            <span class="features value">1,1</span>
+        </li>
+        <li>
+            <span class="features title"><?= __('Phosphorus'); ?>:</span>
+            <span class="features value">0,0095</span>
+        </li>
+        <li>
+            <span class="features title"><?= __('Flash point, ºC, ASTM D 92'); ?>:</span>
+            <span class="features value">222</span>
+        </li>
+        <li>
+            <span class="features title"><?= __('Pour point , ºC, ASTM D 97'); ?>:</span>
+            <span class="features value">-39</span>
+        </li>
+        <li style="display: none">
+            <span class="features title">ASTM D 874:</span>
+            <span class="features value">0,0195</span>
+        </li>
+        <li style="display: none">
+            <span class="features title">Содержание фосфора:</span>
+            <span class="features value">333</span>
+        </li>
+        <li style="display: none">
+            <span class="features title">Температура вспышки, ºC, SAPT Y 95:</span>
+            <span class="features value">123</span>
+        </li>
+        <li style="display: none">
+            <span class="features title">Температура застывания, ºC, KASM P 60:</span>
+            <span class="features value">-49</span>
+        </li>
+    </ul>
+    <a href="#" class="show_hide" data-mage-init='{"showHideList":
+    {
+        "itemsShown":"<?= $shown_items; ?>",
+        "childElement":"li",
+        "toggleText":"Show all specifications",
+        "activeToggleText":"Collapse"
+     }}'>
+    </a>
+
