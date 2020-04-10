@@ -1,7 +1,9 @@
 <?php
 /**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * AutoBase default Catalog product list items template
+ *
+ * @author Nikolaichuk Oleksandr nikolaychuk.alexander@gmail.com
+ * @copyright 2020 Nikolaichuk
  */
 
 // phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
@@ -12,6 +14,12 @@
 ?>
 
 <?php
+
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$StockState = $objectManager->get('\Magento\CatalogInventory\Api\StockStateInterface');
+
+$_minQtyProduct = 2;
 
 switch ($type = $block->getType()) {
 
@@ -176,9 +184,12 @@ $shuffle; ?>">
                 <?php if ($type == 'related' && $canItemsAddToCart) : ?>
                 <?php endif; ?>
                 <div class="products wrapper grid products-grid products-<?= $block->escapeHtmlAttr($type); ?>">
-                    <ol class="products list items product-items" data-mage-init='{"customSlider":{}}'>
+                    <ol id="related-products" class="products list items product-items"
+                        data-mage-init='{"relatedProductsSlider":{}}'>
                         <?php $iterator = 1; ?>
-                        <?php foreach ($items as $_item) : ?>
+                        <?php foreach ($items
+
+                        as $_item) : ?>
                         <?php $available = ''; ?>
                         <?php if (!$_item->isComposite() && $_item->isSaleable() && $type == 'related') : ?>
                             <?php if (!$_item->getRequiredOptions()) : ?>
@@ -206,11 +217,20 @@ $shuffle; ?>">
                                     <span class="value"><?= $block->escapeHtml($_item->getSku()); ?></span>
                                 </div>
                                 <?php if ($_item->getIsSalable()) : ?>
-                                    <div class="stock available"><span><?= $block->escapeHtml(__('In stock')); ?></span>
-                                    </div>
+                                    <?php $_qtyProduct = $StockState->getStockQty($_item->getId()); ?>
+                                    <?php if ($_qtyProduct <= $_minQtyProduct) : ?>
+                                        <div class="availability only">
+                                            <span><?= __('Ends'); ?></span>
+                                        </div>
+                                    <?php else : ?>
+                                        <div class="stock available">
+                                            <i class="fas fa-check"></i>
+                                            <span><?= __('In stock'); ?></span>
+                                        </div>
+                                    <?php endif; ?>
                                 <?php else : ?>
                                     <div class="stock unavailable">
-                                        <span><?= $block->escapeHtml(__('Out of stock')); ?></span></div>
+                                        <span><?= __('Out of stock'); ?></span></div>
                                 <?php endif; ?>
                             </div>
                             <div class="product details product-item-details">
@@ -221,7 +241,10 @@ $shuffle; ?>">
                                 </strong>
                                 <?= /* @noEscape */
                                 $block->getProductPrice($_item); ?>
-
+                                <?php if ($_item->getFinalPrice() != $_item->getPrice()) : ?>
+                                    <?php $_percent = round(((float)$_item->getFinalPrice() / (float)$_item->getPrice()) * 100) - 100; ?>
+                                    <span class="percent value"><?= __('Sale ') . $_percent . '%'; ?></span>
+                                <?php endif; ?>
                                 <?php if ($templateType) : ?>
                                     <?= $block->getReviewsSummaryHtml($_item, $templateType); ?>
                                 <?php endif; ?>

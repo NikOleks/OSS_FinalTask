@@ -1,6 +1,5 @@
 define([
-        'jquery',
-        'mage/translate'
+        'jquery'
     ],
     function ($) {
         'use strict';
@@ -8,19 +7,22 @@ define([
         return function (config, element) {
 
             var showHideToggle = $(element),
-                itemsShown = +config.itemsShown + 1,
+                positionStart = +config.position + 1,
                 childElement = config.childElement,
-                elementText = config.toggleText,
-                activeElementText= config.activeToggleText;
-            showHideToggle.html($.mage.__(elementText));
-            console.log(config);
-            showHideToggle.click(function(){
-                showHideToggle.prev().children(childElement + ':nth-child(n+' + itemsShown + ')').slideToggle('');
-                showHideToggle.toggleClass('active-js');
-                if(showHideToggle.hasClass('active-js')){
-                    showHideToggle.html($.mage.__(activeElementText));
-                } else {
-                    showHideToggle.html($.mage.__(elementText));
+                action = config.effect;
+            showHideToggle.on('click', function () {
+                var parent = $(this).parent(),
+                    itemsHideShow = $(parent).find('.drop-out-js')
+                        .children(childElement + ':nth-child(n+' + positionStart + ')');
+                if( action === 'show' && itemsHideShow.length !== 0 ){
+                    $(itemsHideShow).slideDown();
+                    $(this).hide();
+                    $(parent).find('.hide-js').show();
+                }
+                if ( action === 'hide' && itemsHideShow.length !== 0 ){
+                    $(itemsHideShow).slideUp();
+                    $(this).hide();
+                    $(parent).find('.show-js').show();
                 }
                 return false;
             });

@@ -1,0 +1,31 @@
+<?php
+/**
+ * AutoBase default Wishlist link template
+ *
+ * @author Nikolaichuk Oleksandr nikolaychuk.alexander@gmail.com
+ * @copyright 2020 Nikolaichuk
+ */
+
+/* @var \Magento\Wishlist\Block\Link $block */
+?>
+<li class="link wishlist" data-bind="scope: 'wishlist'">
+    <a <?= /* @noEscape */ $block->getLinkAttributes(); ?>><?= $block->escapeHtml($block->getLabel()); ?>
+        <!-- ko if: wishlist().counter -->
+        <span data-bind="text: wishlist().items.length" class="counter qty"></span>
+        <!-- /ko -->
+    </a>
+</li>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "wishlist": {
+                        "component": "Magento_Wishlist/js/view/wishlist"
+                    }
+                }
+            }
+        }
+    }
+
+</script>

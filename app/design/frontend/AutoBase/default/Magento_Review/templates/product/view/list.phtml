@@ -1,30 +1,36 @@
 <?php
 /**
+ * AutoBase default Review product view list template
  *
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * @author Nikolaichuk Oleksandr nikolaychuk.alexander@gmail.com
+ * @copyright 2020 Nikolaichuk
  */
 
 /** @var Magento\Review\Block\Product\View\ListView $block */
 
 $_items = $block->getReviewsCollection()->getItems();
 $format = $block->getDateFormat() ?: \IntlDateFormatter::SHORT;
-$shown_items = 3;
+$_shown_items = 3;
 $_counter = 0;
+$_heightReview = 64;
 ?>
 <?php if (count($_items)) : ?>
 <div class="block review-list" id="customer-reviews">
     <div class="block-title">
         <strong><?= $block->escapeHtml(__('Customer Reviews')); ?>&nbsp;(<?= $block->escapeHtml(count($_items)); ?>)</strong>
     </div>
+    <div class="action add review">
+        <a href="#review-form"><?= $block->escapeHtml(__('Add review')); ?></a>
+    </div>
     <div class="block-content">
         <div class="toolbar review-toolbar">
             <?= $block->getChildHtml('toolbar'); ?>
         </div>
-        <ol class="items review-items">
+        <ol class="items review-items drop-out-js">
         <?php foreach ($_items as $_review) : ?>
             <li class="item review-item" itemscope itemprop="review" itemtype="http://schema.org/Review"
-            <?php if( $_counter >= $shown_items) : ?> style="display: none" <?php endif; ?>>
+            <?php if( $_counter >= $_shown_items) : ?> style="display: none" <?php endif; ?>
+                data-mage-init='{"showHideContent":{"height":"<?= $_heightReview; ?>"}}'>
                 <div class="review left-col">
                     <div class="review-details">
                         <p class="review-author">
@@ -38,7 +44,9 @@ $_counter = 0;
                     </div>
                     <div class="review-title" itemprop="name"><?= $block->escapeHtml($_review->getTitle()); ?></div>
                     <div class="review-content" itemprop="description">
-                        <p><?= /* @noEscape */ nl2br($block->escapeHtml($_review->getDetail())); ?></p>
+                        <p class="text-review review-text-js"><?= /* @noEscape */ nl2br($block->escapeHtml($_review->getDetail())); ?></p>
+                        <a href="#" class="more-content more-js" style="display: none"><?=__('Read more'); ?></a>
+                        <a href="#" class="collapse-content collapse-js" style="display: none"><?=__('Collapse'); ?></a>
                         <div class="product quality">
                             <div class="product advantages">
                                 <span class="advantages label"><?=__('Advantages'); ?>:</span>
@@ -93,14 +101,19 @@ $_counter = 0;
             <?php $_counter++; ?>
         <?php endforeach; ?>
         </ol>
-        <?php if ( count($_items) > $shown_items ) : ?>
-            <div class="show_hide" data-mage-init='{"showHideList":
+        <?php if ( count($_items) > $_shown_items ) : ?>
+            <a href="#" class="show-trigger show-js" data-mage-init='{"showHideList":
             {
-                "itemsShown":"<?= $shown_items; ?>",
+                "position":"<?= $_shown_items; ?>",
                 "childElement":"li",
-                "toggleText":"Show all reviews",
-                "activeToggleText":"Collapse"
-            }}'></div>
+                "effect":"show"
+            }}'><?=__('Show all reviews'); ?></a>
+            <a href="#" class="hide-trigger hide-js" style="display: none" data-mage-init='{"showHideList":
+            {
+                "position":"<?= $_shown_items; ?>",
+                "childElement":"li",
+                "effect":"hide"
+            }}'><?=__('Collapse'); ?></a>
         <?php endif; ?>
         <div class="toolbar review-toolbar">
             <?= $block->getChildHtml('toolbar'); ?>

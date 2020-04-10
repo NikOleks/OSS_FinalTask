@@ -15,10 +15,10 @@
  */
 ?>
 <?php
-$shown_items = 7;
+$_shown_items = 7;
 ?>
     <div class="tab-caption"><?= $block->escapeHtml(__('More Information')) ?></div>
-    <ul class="product features list">
+    <ul class="product features list drop-out-js">
         <li>
             <span class="features title"><?= __('Viscosity grade'); ?>:</span>
             <span class="features value">5W-40</span>
@@ -64,12 +64,19 @@ $shown_items = 7;
             <span class="features value">-49</span>
         </li>
     </ul>
-    <a href="#" class="show_hide" data-mage-init='{"showHideList":
+    <a href="#" class="show-trigger show-js" data-mage-init='{"showHideList":
     {
-        "itemsShown":"<?= $shown_items; ?>",
+        "position":"<?= $_shown_items; ?>",
         "childElement":"li",
-        "toggleText":"Show all specifications",
-        "activeToggleText":"Collapse"
+        "effect":"show"
      }}'>
+        <?=__('Show all specifications'); ?>
     </a>
-
+    <a href="#" class="hide-trigger hide-js" style="display: none" data-mage-init='{"showHideList":
+        {
+            "position":"<?= $_shown_items; ?>",
+            "childElement":"li",
+            "effect":"hide"
+        }}'>
+        <?=__('Collapse'); ?>
+    </a>
