@@ -239,17 +239,17 @@
         }
     }
 
-    .actions-links {
+    .header.content .actions-links {
         padding-top: 29px;
         margin-left: 37px;
 
-        li {
+        & > li {
             list-style: none;
             display: inline-block;
             padding: 0 9px;
 
             &:first-child {
-                a {
+                & > a {
                     position: relative;
 
                     &::before {
@@ -265,7 +265,7 @@
             display: inline-block;
 
             .counter.qty {
-                &:extend(.actions-links .minicart-wrapper .action.showcart .counter.qty);
+                &:extend(.header.content .actions-links .minicart-wrapper .action.showcart .counter.qty);
             }
         }
 
@@ -312,7 +312,7 @@
             }
 
             .counter.qty {
-                &:extend(.actions-links .minicart-wrapper .action.showcart .counter.qty);
+                &:extend(.header.content .actions-links .minicart-wrapper .action.showcart .counter.qty);
             }
         }
 

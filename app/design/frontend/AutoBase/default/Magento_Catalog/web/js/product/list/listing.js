@@ -31,6 +31,7 @@ define([
             $('.product-items').owlCarousel({
                 loop: false,
                 margin: 0,
+                dots: false,
                 nav: true,
                 responsiveClass: true,
                 responsive: {

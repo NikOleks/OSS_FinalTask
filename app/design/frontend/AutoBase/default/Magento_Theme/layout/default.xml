@@ -19,7 +19,6 @@
                 </container>
             </container>
         </referenceContainer>
-
         <referenceContainer name="header-wrapper">
             <container name="header.middle.container" htmlTag="div" htmlClass="header-middle-container" after="logo">
                 <block class="Magento\Cms\Block\Block" name="header-callback-block">
@@ -30,7 +29,6 @@
             </container>
             <container name="header.actions.links" htmlTag="div" htmlClass="actions-links" before="+"/>
         </referenceContainer>
-
         <referenceBlock name="logo">
             <arguments>
                 <argument name="logo_file" xsi:type="string">images/store-logo.png</argument>
@@ -38,7 +36,6 @@
                 <argument name="logo_img_height" xsi:type="number">112</argument>
             </arguments>
         </referenceBlock>
-
         <referenceBlock name="store.menu">
             <block class="Magento\Cms\Block\Block" name="header-main-menu" before="+">
                 <arguments>
@@ -46,7 +43,6 @@
                 </arguments>
             </block>
         </referenceBlock>
-
         <referenceContainer name="footer">
             <container name="footer.left.section" htmlTag="div" htmlClass="footer-section menus-section">
                 <block class="Magento\Cms\Block\Block" name="footer-links-block">
@@ -68,67 +64,16 @@
                 </block>
             </container>
         </referenceContainer>
-
-        <!--<referenceContainer name="footer-container">
-            <container name="footer-container-top" htmlTag="div" htmlClass="page-footer__content" before="footer">
-                <container name="footer.links" htmlTag="div" htmlClass="footer content top-block">
-                    <container name="" htmlTag="div" htmlClass="footer__content__contact-block">
-                        <block class="Magento\Cms\Block\Block" name="autoStore-contacts-block">
-                            <arguments>
-                                <argument name="block_id" xsi:type="string">autoStore-contacts-block</argument>
-                            </arguments>
-                        </block>
-                    </container>
-                    <container name="" htmlTag="div" htmlClass="footer__content__links-block">
-                        <block class="Magento\Cms\Block\Block" name="autoStore-links-block1">
-                            <arguments>
-                                <argument name="block_id" xsi:type="string">autoStore-links-block1</argument>
-                            </arguments>
-                        </block>
-                        <block class="Magento\Cms\Block\Block" name="autoStore-links-block2">
-                            <arguments>
-                                <argument name="block_id" xsi:type="string">autoStore-links-block2</argument>
-                            </arguments>
-                        </block>
-                        <block class="Magento\Cms\Block\Block" name="autoStore-links-block3">
-                            <arguments>
-                                <argument name="block_id" xsi:type="string">autoStore-links-block3</argument>
-                            </arguments>
-                        </block>
-                    </container>
-                </container>
-            </container>
-        </referenceContainer>-->
-        <!--<referenceBlock name="footer">
-            <container name="footer.copyright" htmlTag="div" htmlClass="copyright-wrapper" before="-">
-                <block class="Magento\Cms\Block\Block" name="autoStore-payment-block">
-                    <arguments>
-                        <argument name="block_id" xsi:type="string">autoStore-payment-block</argument>
-                    </arguments>
-                </block>
-            </container>
-        </referenceBlock>-->
-
         <move element="minicart" destination="header.actions.links" before="+"/>
         <move element="my-account-link" destination="header.actions.links" after="minicart"/>
         <move element="wish-list-link" destination="header.actions.links" after="my-account-link"/>
         <move element="catalog.compare.link" destination="header.actions.links" after="wish-list-link"/>
-
-
         <move element="store_language" destination="header.top.switchers" before="header-cities-switcher-block"/>
         <move element="top.search" destination="header.middle.container" before="header-callback-block"/>
-
+        <move element="copyright" destination="footer.left.section" before="footer-author-link-block"/>
         <referenceBlock name="header" remove="true"/>
         <referenceBlock name="form.subscribe" remove="true"/>
         <referenceBlock name="report.bugs" remove="true"/>
         <referenceBlock name="footer_links" remove="true"/>
-
-        <move element="copyright" destination="footer.left.section" before="footer-author-link-block"/>
-        <!--<move element="page.main.title" destination="content" before="category.products"/>
-        <move element="copyright" destination="footer.copyright"/>-->
-        <!--<referenceBlock name="store.links" remove="true"/>
-        <referenceBlock name="wish-list-link" remove="true"/>
-        <referenceBlock name="store.settings" remove="true"/>
-        <referenceBlock name="wishlist_sidebar" remove="true"/>-->
     </body>
 </page>

@@ -20,6 +20,8 @@
     <vars module="Magento_Catalog">
         <var name="gallery">
             <var name="navdir">vertical</var>
+            <var name="navarrows">false</var>
+            <var name="arrows">false</var>
         </var>
     </vars>
 </view>

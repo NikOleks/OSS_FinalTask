@@ -4,6 +4,7 @@
         <strong role="heading"
                 aria-level="2"
                 text="label"/>
+        <a href="#" class="link all-viewed"><!-- ko i18n: "All viewed products"--><!-- /ko --></a>
     </div>
     <div class="block-content">
         <div css="'products-' + displayMode">
@@ -35,14 +36,13 @@
                                     </fastForEach>
                                 </div>
                             </div>
-                            <div if="getRegion('description-area')().length"
+                            <!--<div if="getRegion('description-area')().length"
                                  class="product-item-description">
                                 <fastForEach args="data: getRegion('description-area'), as: '$col'" >
                                     <render args="$col.getBody()"/>
                                 </fastForEach>
-                            </div>
+                            </div>-->
                             <div class="product-reviews-summary">
-                                <div class="product-reviews-summary">
                                     <div class="rating-summary">
                                         <div class="rating-result">
                                             <span>&nbsp;</span>
@@ -51,10 +51,9 @@
                                     <div class="reviews-actions">
                                         <a href="#" class="action view">
                                             <span>32</span>&nbsp;
-                                            <!-- ko i18n: "Reviews"--><!-- /ko -->
+                                            <!-- ko i18n: "reviews"--><!-- /ko -->
                                         </a>
                                     </div>
-                                </div>
                             </div>
                         </div>
                     </div>
