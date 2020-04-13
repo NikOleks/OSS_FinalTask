@@ -9,29 +9,6 @@
         <referenceContainer name="product.info.main">
             <container name="product.main.content" htmlTag="div" htmlClass="product-info-content" after="product.info.price"/>
         </referenceContainer>
-
-        <!--<referenceBlock name="product.info.details">
-            <block class="Magento\Catalog\Block\Product\View" name="features.tab.details" as="features_tab" group="detailed_info"
-                   template="Magento_Catalog::product/view/product.features.list.phtml">
-                <arguments>
-                    <argument translate="true" name="title" xsi:type="string">Features</argument>
-                    <argument name="sort_order" xsi:type="string">10</argument>
-                    <argument name="at_call" xsi:type="string">getPackaging</argument>
-                    <argument name="at_code" xsi:type="string">packaging</argument>
-                    <argument name="css_class" xsi:type="string">packaging</argument>
-                    <argument name="at_label" xsi:type="string">packaging</argument>
-                    <argument name="add_attribute" xsi:type="string">itemprop="packaging"</argument>
-                    <argument name="viscosity" xsi:type="string">5W-40</argument>
-                    <argument name="cCt-40" xsi:type="number">84</argument>
-                    <argument name="cCt-100" xsi:type="number">14</argument>
-                    <argument name="sulphated_ash" xsi:type="number">1.1</argument>
-                    <argument name="phosphorus" xsi:type="number">0.0095</argument>
-                    <argument name="flash_point" xsi:type="number">222</argument>
-                    <argument name="pour_point" xsi:type="number">-39</argument>
-                </arguments>
-            </block>
-        </referenceBlock>-->
-
         <referenceBlock name="product.info.description">
             <arguments>
                 <argument name="at_label" xsi:type="string" translate="true">Product description</argument>
@@ -45,7 +22,6 @@
         <referenceContainer name="content">
             <container name="product.reviews.block" htmlTag="div" htmlClass="product reviews block" htmlId="reviews" after="product.info.details"/>
         </referenceContainer>
-
         <move element="product.info.sku" destination="main.content" before="columns"/>
         <move element="product.price.final" destination="product.main.content" before="-"/>
         <move element="product.info.social" destination="product.main.content" before="+"/>
@@ -54,6 +30,5 @@
         <move element="catalog.product.related" destination="content" before="product.info.details"/>
         <move element="reviews.tab" destination="product.reviews.block"/>
         <referenceBlock name="view.addto.wishlist" remove="true"/>
-        <!--<referenceBlock name="related.product.addto" remove="true"/>-->
     </body>
 </page>

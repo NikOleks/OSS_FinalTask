@@ -12,7 +12,7 @@
 
 & when (@media-common = true) {
     .product.reviews.block {
-        margin-bottom: 34px;
+        margin-bottom: @indent__xl;
     }
 
     .review-list {
@@ -252,6 +252,10 @@
 
     .review-toolbar {
         border-top: none;
+    }
+
+    #review-form {
+        display: none;
     }
 
     .review-form .review-field-rating .label {

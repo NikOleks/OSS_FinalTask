@@ -5,7 +5,6 @@ define([
         'use strict';
 
         return function (config, element) {
-
             var showHideToggle = $(element),
                 positionStart = +config.position + 1,
                 childElement = config.childElement,

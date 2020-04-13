@@ -1,6 +1,6 @@
 <?php
 /**
- * AutoBase default Review product view list template
+ * AutoBase module ShowHideReviewText product view list template
  *
  * @author Nikolaichuk Oleksandr nikolaychuk.alexander@gmail.com
  * @copyright 2020 Nikolaichuk
@@ -20,7 +20,7 @@ $_heightReview = 64;
         <strong><?= $block->escapeHtml(__('Customer Reviews')); ?>&nbsp;(<?= $block->escapeHtml(count($_items)); ?>)</strong>
     </div>
     <div class="action add review">
-        <a href="#review-form"><?= $block->escapeHtml(__('Add review')); ?></a>
+        <a href="#review-form" data-mage-init='{"showHideFormReview": {}}'><?= $block->escapeHtml(__('Add review')); ?></a>
     </div>
     <div class="block-content">
         <div class="toolbar review-toolbar">

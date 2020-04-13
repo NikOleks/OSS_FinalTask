@@ -1,8 +1,3 @@
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
-
 define([
     'jquery'
 ], function ($) {
@@ -37,17 +32,7 @@ define([
     }
 
     return function (config) {
-        /*var reviewTab = $(config.reviewsTabSelector),
-            requiredReviewTabRole = 'tab';
-
-        if (reviewTab.attr('role') === requiredReviewTabRole && reviewTab.hasClass('active')) {*/
-            processReviews(config.productReviewUrl);
-        /*} else {
-            reviewTab.one('beforeOpen', function () {
-                processReviews(config.productReviewUrl);
-            });
-        }*/
-
+        processReviews(config.productReviewUrl);
         $(function () {
             $('.product-info-main .reviews-actions a').click(function (event) {
                 var anchor;
