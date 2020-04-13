@@ -94,11 +94,16 @@
                     font-size: @autoBase__font-size__base;
                     line-height: 16px;
                     flex-grow: 1;
+                    order: -1;
+                }
+
+                .stock.available {
+                    margin-top: 7px;
+                    color: @product-related-stock-available__text-color;
                 }
 
                 .price-box {
-                    margin-top: 31px;
-                    margin-bottom: @indent__s;
+                    margin: 7px 0 9px;
 
                     .price {
                         padding-right: 15px;
@@ -106,12 +111,12 @@
                     }
 
                     .old-price .price {
-
+                        .lib-font-size(14);
                     }
                 }
 
                 .product-item-actions {
-                    margin: 12px 0 9px 2px;
+                    margin: 11px 0 10px 2px;
 
                     .action.primary {
                         border-radius: 0;

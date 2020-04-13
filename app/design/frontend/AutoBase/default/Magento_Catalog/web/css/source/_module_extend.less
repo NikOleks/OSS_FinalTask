@@ -2,7 +2,6 @@
 @product-price-box-price__text-color: @autoBase-color-nobel;
 @product-alert__border-color: @autoBase-color-torch-red;
 @product-overview__text-color: @autoBase-color-grey;
-@product-related-stock-available__text-color: @autoBase-color-ocean-green;
 @product-related-stock-unavailable__text-color: @autoBase-color-nobel;
 @product-related-stock-availability-only__text-color: @autoBase-color-torch-red;
 @product-old-price__text-color: @autoBase-color-coral;
@@ -91,6 +90,30 @@
                             .background-image-mixin(@image: 'capture.png', @widthImg: 20px, @heightImg: 36px);
                             .middle-mixin();
                             z-index: 1;
+                        }
+                    }
+
+                    &:nth-child(4) {
+                        padding: 0 !important;
+                        border: none;
+                        position: relative;
+
+                        &::before,
+                        &::after {
+                            content: '';
+                            .middle-mixin();
+                        }
+
+                        &::before {
+                            .block-mixin(31px, 31px);
+                            background-color: @autoBase-color-white;
+                            border-radius: 50%;
+                            z-index: 2;
+                        }
+
+                        &::after {
+                            .background-image-mixin(@image: 'video_ico.png', @widthImg: 23px, @heightImg: 23px);
+                            z-index: 3;
                         }
                     }
                 }

@@ -332,6 +332,9 @@
         }
     }
 
+    //
+    //  Main
+    //  ---------------------------------------------
     .page-main {
         .flex-mixin();
         flex-wrap: wrap;
@@ -393,6 +396,14 @@
 
         .hide-trigger::before {
             transform: translate(-18px, -3px) rotate(180deg);
+        }
+
+        .collapse-form-js {
+            &:extend(.columns .hide-trigger);
+
+            &::before{
+                &:extend(.columns .hide-trigger::before);
+            }
         }
     }
 

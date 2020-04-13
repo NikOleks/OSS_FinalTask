@@ -16,6 +16,11 @@
                         </fastForEach>
 
                         <div class="product-item-details">
+                            <div class="stock available">
+                                <i class="fas fa-check"></i>
+                                <span><!-- ko i18n: "In stock"--><!-- /ko --></span>
+                            </div>
+
                             <fastForEach args="data: getRegion('details-area'), as: '$col'" >
                                 <render args="$col.getBody()"/>
                             </fastForEach>
